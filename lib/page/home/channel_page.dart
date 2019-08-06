@@ -145,11 +145,11 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
         itemBuilder: (context,index){
           if(widget.channelCode == '"video"' || widget.isVideoPage){
             print("channel code ${widget.channelCode}");
-            //视频page
+            //동영상 페이지
             return buildVideoItem(newsList[index],index);
           }else{
             print("channel code ${widget.channelCode}");
-            //普通 page
+            //공통 page
             return buildItem(newsList[index]);
           }
 
@@ -159,8 +159,8 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
   }
 
   /*
-  * 这里视频连接可能是空，需要进一步解析
-  * 解析视频地址时 需要传入 item.url;
+  * 여기의 비디오 연결은 비어있을 수 있으므로 추가 분석이 필요함.
+  * 비디오 주소를 파싱 할 때 item.url을 전달해야함;
   * */
 
   void parseVideoUrl(String url){
@@ -216,8 +216,8 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
     return result;
   }
 
-  //视频条目
-  //视频连接加密 暂时无法获得，视频可能无法播放
+  // 동영상 항목
+  // 비디오 연결 암호화 일시적으로 사용할 수 없음, 비디오가 재생되지 않음
   Widget buildVideoItem(News item,int index){
     print("video url : ${item.video_detail_info.parse_video_url.toString()}");
     print("item url ${item.url}");
@@ -250,18 +250,18 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
             height: 230,
             child: Stack(
               children: <Widget>[
-                //视频播放器
+                //비디오 플레이어
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Chewie(
                       controller:_mapCC[index],
                   ),
                 ),
-                // 视频标题 播放次数
+                // 동영상 제목
                 Container(
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.fromLTRB(15, 10, 30, 0),
-                  //从上到下 渐变透明
+                  //그라데이션 및 투명한 위에서 아래로
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
@@ -298,7 +298,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                   ),
                 ),
 
-                //视频时长
+                //동영상 길이
                 Positioned(
                   right: 20,
                   bottom: 40,
@@ -315,7 +315,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
               ],
             ),
           ),
-        //视频出处
+        //비디오 소스
           Container(
             padding: EdgeInsets.only(left: 10,right: 10),
             color: Colors.white,
@@ -325,13 +325,13 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    //头像
+                    //아바타
                     ClipOval(
                       child: Image.network(
                           "${item.user_info.avatar_url}"
                       ),
                     ),
-                    //作者
+                    //저자
                     Container(
                       margin: EdgeInsets.only(left: 10),
                       child: Text(
@@ -346,7 +346,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                   ],
                 ),
 
-                //关注 评论 。。。
+                //댓글 달기 。。。
                 Align(
                   alignment: Alignment.centerRight,
                   child: Row(
@@ -356,13 +356,13 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                       Container(
                         margin: EdgeInsets.only(left: 5),
                         child: Text(
-                          "关注",
+                          "주의",
                           style: TextStyle(
                               fontSize:12,color: Colors.black
                           ),
                         ),
                       ),
-                      //评论
+                      //댓글
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Row(
@@ -380,7 +380,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                           ],
                         )
                       ),
-                      //省略号
+                      //줄임표
                       Container(
                         margin: EdgeInsets.only(left: 10),
                         child: Icon(Icons.device_hub),
@@ -406,7 +406,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
 
 
-  //普通条目
+  //보통 입국
   Widget buildItem(News item){
     return GestureDetector(
       onTap: (){
@@ -428,48 +428,48 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
   Widget classifyChild(News item){
     if(item.has_video){
-      //有视频
+      //비디오보기
       if(item.video_style == 0){
-        //右侧视频
+        //오른쪽 비디오
         if(item.middle_image == null || item.middle_image.url.isEmpty){
-          //纯文字布局(文章、广告)
+          //일반 텍스트 레이아웃 (기사, 광고)
           //TEXT_NEWS
           return buildTextNews(item);
 
         }
-        //右侧小图布局(1.小图新闻；2.视频类型，右下角显示视频时长)
+        //오른쪽 작은 레이아웃 (1. 작은 그림 뉴스, 2. 비디오 유형, 오른쪽 하단 모서리에있는 비디오 길이)
         //RIGHT_PIC_VIDEO_NEWS
         return buildRightPicVideoNews(item);
 
 
       }else if(item.video_style == 2){
-        //居中大图布局(1.单图文章；2.单图广告；3.视频，中间显示播放图标，右侧显示时长)
-        //居中视频    CENTER_SINGLE_PIC_NEWS
+        //중앙 집중식 대형지도 레이아웃 (1. 단일 이미지 기사, 2. 단일 이미지 광고, 3. 비디오, 중간 재생 아이콘, 오른쪽 길이)
+        //중심의 비디오    CENTER_SINGLE_PIC_NEWS
         return buildCenterSinglePicNews(item);
 
       }
     }else{
-      //非视频新闻
+      //비 - 비디오 뉴스
       print('assetion bool ${item.has_image}');
       if(item.has_image == null || !item.has_image){
-        //纯文字新闻
+        //일반 텍스트 뉴스
         //TEXT_NEWS
         return buildTextNews(item);
 
       }else{
         if(item.image_list == null || item.image_list.isEmpty){
-          //图片列表为空，则是右侧图片
+          //그림 목록이 비어 있습니다. 오른쪽 그림입니다.
           //RIGHT_PIC_VIDEO_NEWS
           return buildRightPicVideoNews(item);
         }
 
         if(item.gallary_image_count == 3){
-          //图片数为3，则为三图
+          //사진 수는 3 장이며 사진은 3 장입니다.
           //THREE_PICS_NEWS
           return build3PicNews(item);
         }
 
-        //中间大图，右下角显示图数
+        //중간에 큰 그림, 그림 갯수가 오른쪽 아래 구석에 표시됩니다.
         //CENTER_SINGLE_PIC_NEWS
         return buildCenterSinglePicNews(item);
 
@@ -480,16 +480,16 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
   }
 
   /**
-   * 纯文字布局(文章、广告)
+   * 일반 텍스트 레이아웃 (기사, 광고)
    * TEXT_NEWS
    */
 
   Widget buildTextNews(News item){
 
-    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//属于置顶
-    bool isHot = item.hot == 1;//属于热点新闻
-    bool isAD =(item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//属于广告新闻
-    bool isMovie = (item.tag.isNotEmpty? item.tag == Constant.TAG_MOVIE : false);//影视
+    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//상단에 속해있다.
+    bool isHot = item.hot == 1;//뜨거운 뉴스에 속한다.
+    bool isAD =(item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//광고 뉴스에 속함
+    bool isMovie = (item.tag.isNotEmpty? item.tag == Constant.TAG_MOVIE : false);//영화
 
 
     return Container(
@@ -514,7 +514,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
               margin: EdgeInsets.only(top: 10),
               child: Row(
                 children: <Widget>[
-                  // 标签： 置顶、热、广告、影视
+                  // 태그 : 탑, 핫, 광고, 영화 및 TV
                   buildLittleTag(isTop,isHot,isAD,isMovie),
                   //author
                   Container(
@@ -524,7 +524,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                       style: TextStyle(fontSize: 11),
                     ),
                   ),
-                  //评论数
+                  //댓글 수
                   Container(
                     margin: EdgeInsets.only(left: 5),
                     child: Text(
@@ -532,7 +532,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
                       style: TextStyle(fontSize: 11),
                     ),
                   ),
-                  //时间
+                  //시간
                   Container(
                     margin: EdgeInsets.only(left: 5),
                     child: Text(
@@ -551,7 +551,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
   Widget buildLittleTag(bool isTop,bool isHot,bool isAD,bool isMovie){
     if(isTop || isHot || isAD || isMovie){
-      //显示
+      //디스플레이
       if(isTop){
         Align align = Align(
           alignment: Alignment.bottomLeft,
@@ -685,23 +685,23 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
 
   /**
-   * 居中大图布局(1.单图文章；2.单图广告；3.视频，中间显示播放图标，右侧显示时长)
+   * 중앙 집중식 대형지도 레이아웃 (1. 단일 이미지 기사, 2. 단일 이미지 광고, 3. 비디오, 중간 재생 아이콘, 오른쪽 길이)
    * CENTER_SINGLE_PIC_NEWS
    */
   Widget buildCenterSinglePicNews(News item){
 
     var screenSize = MediaQuery.of(context).size;
 
-    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//属于置顶
-    bool isHot = item.hot == 1;//属于热点新闻
-    bool isAD =  (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//属于广告新闻
-    bool isMovie = (item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//影视
+    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//상단에 속해있다.
+    bool isHot = item.hot == 1;//뜨거운 뉴스에 속한다.
+    bool isAD =  (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//광고 뉴스에 속함
+    bool isMovie = (item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//영화
 
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
-          //标题
+          //제목
           Align(
             alignment: Alignment.topLeft,
             child: Text(
@@ -755,28 +755,28 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
 
   /**
-   * 右侧小图布局(1.小图新闻；2.视频类型，右下角显示视频时长)
+   * 오른쪽 작은 레이아웃 (1. 작은 그림 뉴스, 2. 비디오 유형, 오른쪽 하단 모서리에있는 비디오 길이)
    * RIGHT_PIC_VIDEO_NEWS
    */
   Widget buildRightPicVideoNews(News item){
     var screenSize = MediaQuery.of(context).size;
 
-    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//属于置顶
-    bool isHot = item.hot == 1;//属于热点新闻
-    bool isAD = (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//属于广告新闻
-    bool isMovie =(item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//影视
+    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//상단에 속해있다.
+    bool isHot = item.hot == 1;//뜨거운 뉴스에 속한다.
+    bool isAD = (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//광고 뉴스에 속함
+    bool isMovie =(item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//영화
 
     return Container(
       width: screenSize.width,
       padding: EdgeInsets.all(10),
       child: Row(
         children: <Widget>[
-          //左侧文字
+          //왼쪽 텍스트
           Expanded(
             flex: 1,
             child: Column(
               children: <Widget>[
-                //标题
+                //제목
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -795,7 +795,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
               ],
             ),
           ),
-          //右侧图片
+          //오른쪽 그림
           Container(
             width: 130,
             height: 80,
@@ -861,22 +861,22 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
 
 
   /**
-   * 三张图片布局(文章、广告)
+   * 세 가지 이미지 레이아웃 (기사, 광고)
    * THREE_PICS_NEWS
    */
   Widget build3PicNews(News item){
     var screenSize = MediaQuery.of(context).size;
 
-    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//属于置顶
-    bool isHot = item.hot == 1;//属于热点新闻
-    bool isAD = (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//属于广告新闻
-    bool isMovie = (item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//影视
+    bool isTop = newsList.indexOf(item) == 0 && widget.channelCode=="\"\"";//상단에 속해있다.
+    bool isHot = item.hot == 1;//뜨거운 뉴스에 속한다.
+    bool isAD = (item.tag.isNotEmpty ? item.tag== Constant.ARTICLE_GENRE_AD : false);//광고 뉴스에 속함
+    bool isMovie = (item.tag.isNotEmpty ? item.tag == Constant.TAG_MOVIE : false);//영화
 
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
-          //标题
+          //제목
           Align(
             alignment: Alignment.topLeft,
             child: Text(
@@ -887,7 +887,7 @@ class ChannelPageState extends State<ChannelPage> with AutomaticKeepAliveClientM
               style: TextStyle(fontSize: 18,color: Colors.black),
             ),
           ),
-          //中间图片
+          //중간 그림
           Container(
             margin: EdgeInsets.only(top: 10),
             child: Row(

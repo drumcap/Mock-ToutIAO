@@ -29,20 +29,20 @@ class WebPageState extends State<WebPage> {
     // TODO: implement initState
     super.initState();
     flutterWebviewPlugin.close();
-    //.listen 会返回一个StreamSubscription 以此来监听webview state具体可参见StreamSubscription 的注释
+    //Listen은 StreamSubscription을 반환하여 webview 상태를 수신함. 자세한 내용은 StreamSubscription 주석을 참조.
     onStateChanged = flutterWebviewPlugin.onStateChanged.listen((WebViewStateChanged state){
       switch(state.type){
         case WebViewState.shouldStart:
-        // 准备加载
-          print("准备加载");
+        // 로드 준비 완료
+          print("로드 준비 완료");
           break;
         case WebViewState.startLoad:
-        // 开始加载
-          print("开始加载");
+        // 로드 시작
+          print("로드 시작");
           break;
         case WebViewState.finishLoad:
-        // 加载完成
-          print("加载完成");
+        // 로드 완료 됨
+          print("로드 완료 됨");
           break;
         case WebViewState.abortLoad:
           break;

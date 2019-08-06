@@ -1,12 +1,12 @@
 
 
 class Constant{
-  /**已选中频道的json*/
+  /**선택한 채널 json*/
   static final String SELECTED_CHANNEL_JSON = "selectedChannelJson";
-  /**w未选频道的json*/
+  /**선택되지 않은 채널 json*/
   static final String UNSELECTED_CHANNEL_JSON = "unselectChannelJson";
 
-  /**频道对应的请求参数*/
+  /**채널에 해당하는 매개 변수 요청*/
   static final String CHANNEL_CODE = "channelCode";
   static final String IS_VIDEO_LIST = "isVideoList";
 
@@ -17,7 +17,7 @@ class Constant{
 
   static final String URL_VIDEO = "/video/urls/v/1/toutiao/mp4/%s?r=%s";
 
-  /**获取评论列表每页的数目*/
+  /**주석 목록 당 페이지 수 얻기*/
   static final int COMMENT_PAGE_SIZE = 20;
 
   static final String DATA_SELECTED = "dataSelected";
@@ -25,54 +25,54 @@ class Constant{
 
 
   /*
-  * 获取默认频道
+  * 기본 채널 가져 오기
   * */
 
   static Map<String,String> getChannel(){
     Map<String,String> channel = Map();
-    channel['\"推荐\"'] = '\"\"';
-    channel["\"视频\""] = '\"video\"';
-    channel["\"热点\""] = '\"news_hot\"';
-    channel["\"社会\""] = '\"news_society\"';
-    channel["\"娱乐\""] = '\"news_entertainment\"';
-    channel["\"科技\""] = '\"news_tech\"';
-    channel["\"汽车\""] = '\"news_car\"';
-    channel["\"体育\""] = '\"news_sports\"';
-    channel["\"财经\""] = '\"news_finance\"';
-    channel["\"军事\""] = '\"news_military\"';
-    channel["\"国际\""] = '\"news_world\"';
-    channel["\"时尚\""] = '\"news_fashion\"';
-    channel["\"游戏\""] = '\"news_game\"';
-    channel["\"旅游\""] = '\"news_travel\"';
-    channel["\"历史\""] = '\"news_history\"';
-    channel["\"探索\""] = '\"news_discovery\"';
-    channel["\"美食\""] = '\"news_food\"';
-    channel["\"育儿\""] = '\"news_baby\"';
-    channel["\"养生\""] = '\"news_regimen\"';
-    channel["\"故事\""] = '\"news_story\"';
-    channel["\"美文\""] = '\"news_essay\"';
+    channel['\"추천\"'] = '\"\"';
+    channel["\"비디오\""] = '\"video\"';
+    channel["\"인기\""] = '\"news_hot\"';
+    channel["\"사회\""] = '\"news_society\"';
+    channel["\"엔터\""] = '\"news_entertainment\"';
+    channel["\"기술\""] = '\"news_tech\"';
+    channel["\"자동차\""] = '\"news_car\"';
+    channel["\"스포츠\""] = '\"news_sports\"';
+    channel["\"금융\""] = '\"news_finance\"';
+    channel["\"군대\""] = '\"news_military\"';
+    channel["\"국제\""] = '\"news_world\"';
+    channel["\"패션\""] = '\"news_fashion\"';
+    channel["\"게임\""] = '\"news_game\"';
+    channel["\"여행\""] = '\"news_travel\"';
+    channel["\"역사\""] = '\"news_history\"';
+    channel["\"탐색\""] = '\"news_discovery\"';
+    channel["\"음식\""] = '\"news_food\"';
+    channel["\"육아\""] = '\"news_baby\"';
+    channel["\"건강\""] = '\"news_regimen\"';
+    channel["\"이야기\""] = '\"news_story\"';
+    channel["\"에세이\""] = '\"news_essay\"';
 
     return channel;
   }
 
   /*
-  * 获取视频 频道
+  * 비디오 채널 가져 오기
   * */
 
   static Map<String,String> getVideoChannel(){
     Map<String,String> channel = Map();
-    channel["\"推荐\""] = '\"video\"';
-    channel["\"音乐\""] = '\"subv_voice\"';
-    channel["\"搞笑\""] = '\"subv_funny\"';
-    channel["\"社会\""] = '\"subv_society\"';
-    channel["\"小品\""] = '\"subv_comedy\"';
-    channel["\"生活\""] = '\"subv_life\"';
-    channel["\"影视\""] = '\"subv_movie\"';
-    channel["\"娱乐\""] = '\"subv_entertainment\"';
-    channel["\"呆萌\""] = '\"subv_cute\"';
-    channel["\"游戏\""] = '\"subv_game\"';
-    channel["\"原创\""] = '\"subv_boutique\"';
-    channel["\"开眼\""] = '\"subv_broaden_view\"';
+    channel["\"추천\""] = '\"video\"';
+    channel["\"음악\""] = '\"subv_voice\"';
+    channel["\"웃긴\""] = '\"subv_funny\"';
+    channel["\"사회\""] = '\"subv_society\"';
+    channel["\"유머\""] = '\"subv_comedy\"';
+    channel["\"인생\""] = '\"subv_life\"';
+    channel["\"영화\""] = '\"subv_movie\"';
+    channel["\"엔터\""] = '\"subv_entertainment\"';
+    channel["\"귀염\""] = '\"subv_cute\"';
+    channel["\"게임\""] = '\"subv_game\"';
+    channel["\"원본\""] = '\"subv_boutique\"';
+    channel["\"열린눈\""] = '\"subv_broaden_view\"';
 
 
     return channel;

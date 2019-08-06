@@ -48,8 +48,8 @@ class PageWidgetState extends State<PageWidget> {
       }
     };
 
-    //添加监听器， 当page状态变化时 会调用 listener 详情见 notifier注释
-    //每当changeState时，这里都会调用listener的方法
+    //페이지 상태가 변경될 때 listener, call listener를 추가. 자세한 내용은 notifier를 참조할것.
+    //changeState가 있을 때마다 리스너 메소드가 여기에서 호출.
     widget.controller.loadingNotifier.addListener(listener);
   }
 
@@ -93,7 +93,7 @@ enum PageState{
 }
 
 class PageStateController{
-  //属性监听，也可以用InheritedWidget、Redux实现
+  //속성 모니터링은 InheritedWidget, Redux를 사용하여 구현할 수도 있음
   ValueNotifier<PageState> loadingNotifier = ValueNotifier(PageState.Loading);
   PageState _state = PageState.Loading;
 

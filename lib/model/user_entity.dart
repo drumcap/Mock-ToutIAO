@@ -2,17 +2,15 @@
 
 class UserEntity{
 
-  /**
-   * verified_content :
-   * avatar_url : http://p3.pstatp.com/thumb/216b000e0abb3ee9cb91
-   * user_id : 59834611934
-   * name : 电竞手游君
-   * follower_count : 0
-   * follow : false
-   * user_auth_info :
-   * user_verified : false
-   * description : 游戏 资讯 游戏攻略 你要的这里都有，来这里就对了。
-   */
+  /// verified_content :
+  /// avatar_url : http://p3.pstatp.com/thumb/216b000e0abb3ee9cb91
+  /// user_id : 59834611934
+  /// name : 전자 스포츠 게임
+  /// follower_count : 0
+  /// follow : false
+  /// user_auth_info :
+  /// user_verified : false
+  /// description : 게임 정보 게임 해적 당신은 여기에 그것을 갖고 싶습니다.
 
   String verified_content;
   String avatar_url;

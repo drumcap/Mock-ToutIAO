@@ -1,17 +1,15 @@
 
 
 class TipEntity{
-  /**
-   * display_info : 今日头条推荐引擎有15条更新
-   * open_url :
-   * web_url :
-   * app_name : 今日头条
-   * package_name :
-   * display_template : 今日头条推荐引擎有%s条更新
-   * type : app
-   * display_duration : 2
-   * download_url :
-   */
+  /// display_info : 오늘의 헤드 라인 추천 엔진에 15 개의 업데이트가 있습니다.
+  /// open_url :
+  /// web_url :
+  /// app_name : 今日头条
+  /// package_name :
+  /// display_template : 오늘의 헤드 라인 추천 엔진에 %s 개의 업데이트가 있습니다.
+  /// type : app
+  /// display_duration : 2
+  /// download_url :
 
   String display_info;
   String open_url;

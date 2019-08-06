@@ -27,7 +27,7 @@ class VideoEntity{
   int video_watching_count;
   int video_watch_count;
   List<dynamic> video_url;
-  //自己新增的字段，记录视频播放的进度，用于同步视频列表也和详情页的进度
+  //자신의 필드를 추가하여 비디오 재생 진행 상황을 기록하고, 비디오 목록과 세부 정보 페이지의 진행 상태를 동기화하는 데 사용
   int progress;
   String parse_video_url;
 
@@ -37,7 +37,7 @@ class VideoEntity{
     this.video_third_monitor_url, this.video_id, this.video_watching_count,
     this.video_watch_count, this.video_url, this.progress,
     this.parse_video_url
-}); //解析出来的视频地址
+}); //파싱 된 비디오 주소
 
   static VideoEntity fromJson(Map<String,dynamic> json){
 

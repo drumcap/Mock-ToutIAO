@@ -23,7 +23,7 @@ class MainPageState extends State<MainPage> {
 
   var pageController = PageController(initialPage: 0,keepPage: true);
 
-  DateTime lastPressAt;//上次点击时间
+  DateTime lastPressAt;//마지막 클릭 시간
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +69,7 @@ class MainPageState extends State<MainPage> {
       onWillPop: ()async{
         if(lastPressAt == null || DateTime.now().difference(lastPressAt) > Duration(seconds: 2)){
           lastPressAt = DateTime.now();
-          Fluttertoast.showToast(msg: "再点击一次可退出应用");
+          Fluttertoast.showToast(msg: "앱을 종료하려면 다시 클릭하십시오.");
           return false;
         }
         return true;

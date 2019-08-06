@@ -16,7 +16,7 @@ class MicroTTPageState extends State<MicroTTPage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('我的微头条',style: TextStyle(color: Colors.black,fontSize: 18),),
+        title: Text('내 마이크로 헤드 라인',style: TextStyle(color: Colors.black,fontSize: 18),),
         centerTitle: true,
         elevation: 0,
         actions: <Widget>[
@@ -41,7 +41,7 @@ class MicroTTPageState extends State<MicroTTPage> {
                   children: <Widget>[
                     Icon(Icons.text_fields,color: Colors.blue,),
                     Text(
-                      "文字",
+                      "텍스트",
                       style: TextStyle(fontSize: 14,color: Colors.black),
                     ),
                   ],
@@ -55,7 +55,7 @@ class MicroTTPageState extends State<MicroTTPage> {
                   children: <Widget>[
                     Icon(Icons.image,color: Colors.green,),
                     Text(
-                      "图片",
+                      "그림",
                       style: TextStyle(fontSize: 14,color: Colors.black),
                     ),
                   ],
@@ -69,7 +69,7 @@ class MicroTTPageState extends State<MicroTTPage> {
                   children: <Widget>[
                     Icon(Icons.text_fields,color: Colors.blue,),
                     Text(
-                      "视频",
+                      "비디오",
                       style: TextStyle(fontSize: 14,color: Colors.red),
                     ),
                   ],

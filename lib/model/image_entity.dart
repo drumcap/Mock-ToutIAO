@@ -1,13 +1,11 @@
 
 
 class ImageEntity{
-  /**
-   * url : http://p3.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp
-   * width : 700
-   * url_list : [{"url":"http://p3.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"},{"url":"http://pb9.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"},{"url":"http://pb1.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"}]
-   * uri : list/2c23000095ae9f56b15f
-   * height : 393
-   */
+  /// url : http://p3.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp
+  /// width : 700
+  /// url_list : [{"url":"http://p3.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"},{"url":"http://pb9.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"},{"url":"http://pb1.pstatp.com/list/300x196/2c23000095ae9f56b15f.webp"}]
+  /// uri : list/2c23000095ae9f56b15f
+  /// height : 393
 
   String url;
   int width;

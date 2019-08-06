@@ -12,7 +12,7 @@ import '../model/news_response.dart';
 
 class DioManager{
 
-  /**接口根地址*/
+  /**인터페이스 루트 주소*/
   static final String BASE_SERVER_URL = "http://is.snssdk.com/";
   static final String HOST_VIDEO = "http://i.snssdk.com";
   static final String URL_VIDEO="/video/urls/v/1/toutiao/mp4/%s?r=%s";
@@ -51,12 +51,24 @@ class DioManager{
       _dio.cookieJar = PersistCookieJar(dir: path);
     });
 
+    _dio.interceptor.request.onSend = (Options options){
+      print("====== request start ========");
+      print("${options.baseUrl} , ${options.path} , ${options.method} , ${options.data}");
+      print("====== request end ========");
+      return options;
+    };
+
+    _dio.interceptor.response.onSuccess = (Response response) {
+      print("====== response start ========");
+      print(response);
+      print("====== response end ========");
+      return response;
+    };
 
     _dio.interceptor.response.onError = (DioError e){
       EventUtil.eventBus.fire(e);
       return e;
     };
-
   }
 
   static DioManager singleton = DioManager._internal();
@@ -92,9 +104,9 @@ class DioManager{
 
     }on DioError catch(e){
       if(CancelToken.isCancel(e)){
-        print('get请求取消! ' + e.message);
+        print('get 취소요청! ' + e.message);
       }
-      print('get请求取消! ' + "$e");
+      print('get 취소요청! ' + "$e");
     }
     return resultData;
 
@@ -114,9 +126,9 @@ class DioManager{
       );
     }on DioError catch(e){
       if(CancelToken.isCancel(e)){
-        print('get请求取消! ' + e.message);
+        print('get 취소요청! ' + e.message);
       }
-      print('get请求取消! ' + "$e");
+      print('get 취소요청! ' + "$e");
     }
     return response;
   }
@@ -144,9 +156,9 @@ class DioManager{
 
     }on DioError catch(e){
       if (CancelToken.isCancel(e)) {
-        print('post请求取消! ' + e.message);
+        print('post 취소요청! ' + e.message);
       }
-      print('post请求发生错误：$e');
+      print('post 요청오류：$e');
     }
     return resultData;
 
@@ -164,9 +176,9 @@ class DioManager{
       );
     } on DioError catch (e) {
       if (CancelToken.isCancel(e)) {
-        print('post请求取消! ' + e.message);
+        print('post 취소요청! ' + e.message);
       }
-      print('post请求发生错误：$e');
+      print('post 요청오류：$e');
     }
     return response;
 
